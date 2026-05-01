@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon</title>
+    <script src="https://unpkg.com/lenis@1.3.15/dist/lenis.min.js"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BJ+Cree:wght@400;500;600;700&family=Bitcount+Grid+Double:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Saira+Stencil:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./threejs/Three.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loader-content">
+            <span class="loader-text">LOADING</span>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="turning-screen">
+    </div>
+
+    <div class="canvas-container">
+        <canvas class="main-canvas"></canvas>
+    </div>
+    
+    <div class="ui">
+        <header class="header">
+            <div class="header-container">
+                
+                <div class="header-logo">
+                    <a href="index.html"><span class="logo-text">MOON</span></a>
+                </div>
+                <div class="header-center">
+                    <div class="header-center-back-btn">
+                        <img src="pic\长箭头-copy-copy.svg" alt="" class="back-btn-arrow">
+                        <span class="back">BACK</span>
+                        <img src="pic\长箭头-copy-copy.svg" alt="" class="back-btn-arrow-clone">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-right-sound-btn">
+                        <img src="pic\sound-control-btn-pic-black.svg" alt="sound" style="width: 1.6vw; height: auto;" height="auto" class="header-right-sound-btn-pic">
+                    </div>
+                    <div class="header-right-explore-btn">
+                        <a href=""><span style="font-size: 1vw; font-weight: 900; color: rgb(253, 250, 246); ">EXPLORE</span></a>
+                    </div>
+                    <div class="header-right-menu-btn">
+                        <span style="font-size: 1vw; font-weight: 900; color: rgb(0, 0, 0); ">MENU</span>
+                        <img src="pic\header-menu-dots.svg" alt="Menu Dots" class="header-right-menu-dots">
+                    </div>
+                </div>
+                <div class="header-menu">
+                    <div class="header-menu-content1">
+                        <a class="menu-ani1" href="index.html">
+                            <div style="overflow: hidden; height: 1.4vw;" class="menu-ani1-content1">
+                                <span class="text-wrapper">
+                                    <span class="content-display-text">HOME</span>
+                                    <span class="content-display-text-clone">HOME</span>
+                                </span>
+                                <img src="pic\长箭头-copy-copy.svg" alt="" class="content-display-arrow">
+                            </div>
+
+                        </a>
+                        <a class="menu-ani1">
+                            <div style="overflow: hidden; height: 1.4vw;" class="menu-ani1-content1">
+                                <span class="text-wrapper">
+                                    <span class="content-display-text">CULTURE</span>
+                                 <span class="content-display-text-clone">CULTURE</span>
+                            </span>
+                                <img src="pic\长箭头-copy-copy.svg" alt="" class="content-display-arrow">
+                            </div>
+                        </a>
+                        <a class="menu-ani1">
+                            <div style="overflow: hidden; height: 1.4vw;" class="menu-ani1-content1">
+                                <span class="text-wrapper">
+                                    <span class="content-display-text">ABOUT</span>
+                                    <span class="content-display-text-clone">ABOUT</span>
+                                </span>
+                                <img src="pic\长箭头-copy-copy.svg" alt="" class="content-display-arrow">
+                            </div>
+                        </a>
+                        <a class="menu-ani1">
+                            <div style="overflow: hidden; height: 1.4vw;" class="menu-ani1-content1">
+                            <span class="text-wrapper">
+                                <span class="content-display-text">CONTACT</span>
+                                <span class="content-display-text-clone">CONTACT</span>
+                            </span>
+                            <img src="pic\长箭头-copy-copy.svg" alt="" class="content-display-arrow">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="header-menu-content2">
+                        <a href="https://zh.wikipedia.org/wiki/%E6%9C%88%E7%90%83" class="menu-ani2" target="_blank" rel="noopener noreferrer">
+                            <div style="overflow: hidden; height: 3.2vw;" class="menu-ani2-content2">
+                            <img src="pic\Wikipedia.svg" alt="" style="width: 2.4vw; height: auto;" height="auto">
+                            <span class="text-wrapper">
+                                <span class="content-display-text" style="margin-left: 0.8vw; color: black;">WIKIPEDIA</span>
+                                <span class="content-display-text-clone" style="margin-left: 0.8vw; color: black;">WIKIPEDIA</span>
+                            </span>
+                            <img src="pic\长箭头-copy-copy.svg" alt="" class="content-display-arrow arrow45" style="rotate: -45deg;">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <section class="page section1" style="height: 100vh;">
+        <div class="moonmeteorite-container"> 
+        </div>
+
+        <div class="title">
+            <p class="title-p">The <span style="font-weight: 900; font-size: 4.5em;">moon</span><br>
+                is a totem,
+                a coordinate,
+                and a home. 
+                By recording the moon, 
+                we are also recording humanity's ultimate romance with the unknown.</p>
+        </div>      
+    </section>
+
+    <section class="page section2" style="height: 200vh;">
+        <div class="title-map">
+            <p class="title-map-p title-map-1">
+                <span class="Mapping">Mapping</span>
+                <span class="the1">the</span>
+                <span class="Traces">Traces,</span>
+            </p>
+            <p class="title-map-p title-map-2">
+                <span class="Meeting">Meeting</span>
+                <span class="the2">the</span>
+                <span class="Races">Races</span>
+            </p>
+            <div class="scroll-logo"></div>
+        </div>  
+
+        <div class="title-map-introduce">
+            <p class="introduce-p ">
+                "Moonlight bathes every inch of the earth, weaving 
+            </p>
+            <p class="introduce-p ">
+                together the aspirations and legends of diverse 
+            </p>
+            <p class="introduce-p ">
+                peoples. In its own unique way, every nation has 
+            </p>
+            <p class="introduce-p ">
+                enshrined its nostalgia, blessings, and awe within
+            </p>
+            <p class="introduce-p ">
+                 this ancient and eternal radiance."
+            </p>
+        </div>  
+
+        <div class="worldmap-container">
+            <video class="worldmap-video" src="audio video\Evolution_of_the_Moon.ogv.240p.vp9.webm" 
+           muted loop playsinline autoplay></video>
+        </div>
+    </section>
+
+    <section class="page section3" style="height: 400vh;">
+        <div class="title-nation">
+            <div class="title-nation-title">
+                <span class="nation-title-span">Moon</span>
+                <span class="nation-title-span">Culture</span>
+            </div>
+
+            <div class="title-nation-introduce">
+                <p class="nation-introduce-p">Every culture has its own moon culture, </p>
+                <p class="nation-introduce-p">choose the culture you wish to explore,</p>
+                <p class="nation-introduce-p">and you will gain something from it.</p>
+            </div>
+        </div>
+
+        <div class="nation-culture">
+            <div class="culture-region" date-reionBTN="CN"> <!--中国-->
+                <div class="region-pic-container">
+                    <img src="pic\china\CN-01.png" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Asia·China·4th·Century·BC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">China</span>
+                </div>
+            </div>
+                       
+            <div class="culture-region" date-reionBTN="JP"> <!--日本-->
+                <div class="region-pic-container">
+                    <img src="pic\JP\JP-01.png" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Asia·Japan·10th·Century·AC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Japan</span>
+                </div>
+            </div>
+                        
+            <div class="culture-region" date-reionBTN="IN"> <!--印度-->
+                <div class="region-pic-container">
+                    <img src="pic\in\IN-01.jpg" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Asia·India·15th·Century·BC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">India</span>
+                </div>
+            </div>
+                       
+            <div class="culture-region" date-reionBTN="GR">  <!--希腊-->
+                <div class="region-pic-container">
+                    <img src="pic\GREECE\GR-01.jpg" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Europe·Greece·8th·Century·BC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Greece</span>
+                </div>
+            </div>
+            
+            <div class="culture-region" date-reionBTN="RO"> <!--罗马-->
+                <div class="region-pic-container">
+                    <img src="pic\ROME\RO-01.jpg" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Europe·Rome·8th·Century·BC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Rome</span>
+                </div>
+            </div>
+            
+            <div class="culture-region" date-reionBTN="NE">  <!--北欧-->
+                <div class="region-pic-container">
+                    <img src="pic\RESIDENT EVIL requiem_20260313085131.png" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Europe·Northern·Europe·13th·Century·AC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Nor Europe</span>
+                </div>
+            </div>
+            
+            <div class="culture-region" date-reionBTN="WE"> <!--西欧-->
+                <div class="region-pic-container">
+                    <img src="pic\RESIDENT EVIL requiem_20260313085131.png" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Europe·Western·Europe·13th·Century·AC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Wes Europe</span>
+                </div>
+            </div>
+            
+            <div class="culture-region" date-reionBTN="EG">  <!--埃及-->
+                <div class="region-pic-container">
+                    <img src="pic\RESIDENT EVIL requiem_20260313085131.png" alt="" class="region-pic">
+                </div>
+                <p class="location">Earth·Africa·Egypt·31st·Century·BC</p>
+                <div class="L-A">
+                    <img src="pic\长箭头W.svg" alt="箭头" class="L-A-A"> <span class="L-A-L">Egypt</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="page section4" style="height: 800vh;">
+        <div class="moonExplore-container"></div>
+        <div class="explore-page divPage1" style="margin-top: -100vh;">
+            <div class="satellite-txt">
+                <h2>Luna - Soviet Union</h2>
+                <p class="content">Date: September 13, 1959</p>
+                <p class="content">Location: Eastern Mare Imbrium (Sea of Rains)</p>
+                <p>Coordinates: 29.1°N, 0.0°</p>
+                <p class="content">Achievement: The first man-made object to reach the lunar surface.</p>
+            </div>
+            <div class="satellite-pic">
+                <img src="pic\satellite\Luna2.jpg" alt=""  class="satellite-pic-style">
+            </div>
+        </div>
+
+        <div class="explore-page divPage2"></div>
+
+        <div class="explore-page divPage3">
+            <div class="satellite-txt">
+                <h2>Ranger 7 - United States</h2>
+                <p class="content">Date: July 31, 1964</p>
+                <p class="content">Location: Mare Nubium (Sea of Clouds).</p>
+                <p>Coordinates: 10.35°S, 20.58°W</p>
+                <p class="content">Achievement: The first U.S. space probe to successfully 
+                    transmit high-resolution, close-up television images of the lunar surface back to Earth before its planned impact.</p>
+            </div>
+            <div class="satellite-pic">
+                <img src="pic\satellite\Luna2.jpg" alt=""  class="satellite-pic-style">
+            </div>
+        </div>
+
+        <div class="explore-page divPage4"></div>
+
+        <div class="explore-page divPage5">
+            <div class="satellite-txt">
+                <h2>Luna 9 - Soviet Union</h2>
+                <p class="content">Date: February 3, 1966</p>
+                <p class="content">Oceanus Procellarum (Ocean of Storms).</p>
+                <p>Coordinates: 7.13°N, 64.37°W</p>
+                <p class="content">Achievement: The first spacecraft to achieve a soft landing on the 
+                    Moon (or any planetary body) and the first to transmit photographic data from the lunar surface back to Earth.</p>
+            </div>
+            <div class="satellite-pic sp2">
+                <img src="pic\satellite\Luna2.jpg" alt=""  class="satellite-pic-style">
+            </div>
+        </div>
+
+        <div class="explore-page divPage6"></div>
+
+        <div class="explore-page divPage7">
+            <div class="satellite-txt">
+                <h2>Surveyor 1 - United States</h2>
+                <p class="content">Date: June 2, 1966</p>
+                <p class="content">Location: Oceanus Procellarum (Ocean of Storms).</p>
+                <p>Coordinates: 2.45°N, 43.22°W</p>
+                <p class="content">Achievement: The first successful soft landing on the Moon by an American spacecraft. 
+                    It served as a vital precursor to the Apollo crewed missions.</p>
+            </div>
+            <div class="satellite-pic">
+                <img src="pic\satellite\Luna2.jpg" alt=""  class="satellite-pic-style">
+            </div>
+        </div>
+
+        <div class="explore-page divPage8"></div>
+        
+    </section>
+    
+        <div class="region-content turn-back"  style="background-color: rgb(44, 26, 26)">
+            <div class="content-container CN-content" style="background-color: rgb(44, 26, 26);">   
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">  <!--文化介绍第一页-->
+                        <span class="moonTtitle">China</span>
+                            <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 75, 58);">The Emotional Anchor</span> <br>
+                                        In Chinese culture, the moon is the ultimate symbol of emotional connection, 
+                                        where its phases mirror the cycles of human life. The full moon, in particular, 
+                                        represents "reunion", serving as a spiritual bridge that links displaced 
+                                        wanderers to their homes and loved ones across vast distances.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(255, 75, 58);">The Cultural Legacy</span><br>
+                                        Beyond emotion, the moon embodies a rich tapestry of philosophy 
+                                        and myth, from the legendary goddess Chang’e to the serene ideals of Taoist purity. 
+                                        This ancient reverence continues today, as China names its lunar exploration programs after these timeless icons, 
+                                        blending poetic heritage with modern ambition.
+                            </div> <!--文字介绍-->
+                            <div class="story">
+                                <span style="font-size: 0.9vw; color: rgb(255, 75, 58);" >Story</span><br>
+                                    <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                        <span>Chang'e</span>
+                                        <span>Jade Rabbit</span>
+                                        <span>Wu Gang</span>
+                                    </div>      
+                            </div>  
+
+                            <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                                <img src="pic\china\CN-01.png" alt="" class="moon-region-culture-pic">
+                            </div>     
+                    </div>
+                        
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">     <!--change 111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Legend of Chang'e</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Hero Archer</span><br>
+                                Long ago, ten suns appeared in the sky at once, scorching the earth and destroying all crops. 
+                                The people were dying of thirst and hunger. A heroic archer named Hou Yi climbed to the top 
+                                of the Kunlun Mountains, drew his magical bow, and shot down nine of the ten suns, leaving only 
+                                one to provide light and warmth.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Choice</span><br>
+                                To reward his bravery, the Queen Mother of the West gave Hou Yi an elixir of immortality. 
+                                If he drank it, he would instantly ascend to heaven and become a god. However, Hou Yi didn't 
+                                want to leave his beautiful and kind wife, Chang'e, so he gave her the elixir to keep safe.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-02.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--change 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Legend of Chang'e</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">Flight to the Moon</span><br>
+                                One day, while Hou Yi was out hunting, his greedy apprentice, Peng Meng, broke into their 
+                                home and demanded the elixir at swordpoint. Knowing she couldn't defeat him, Chang'e chose 
+                                to drink the potion herself rather than let it fall into the hands of a villain.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Tradition</span><br>
+                                As soon as she swallowed the elixir, Chang'e became weightless and floated out the 
+                                window toward the heavens. Because she wanted to stay as close to her husband as possible, 
+                                she chose to land on the Moon, the closest celestial body to Earth.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-03.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--玉兔 111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Legend of the Jade Rabbit</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Divine Test</span><br>
+                                The Jade Emperor descended to Earth disguised as a starving beggar to test the hearts 
+                                of three animals: a Fox, a Monkey, and a Rabbit. He pleaded with them for food, claiming 
+                                he was too weak to find his own.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Search for Food</span><br>
+                                The animals rushed to help. The Monkey gathered fresh fruits from the trees, and the Fox 
+                                caught a fish from a stream. The Rabbit, however, could only find grass—which humans cannot 
+                                eat. Feeling deeply ashamed that it had nothing to offer, the Rabbit returned empty-handed.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-04.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--玉兔 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Legend of the Jade Rabbit</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Ultimate Sacrifice</span><br>
+                                Determined to help, the Rabbit asked the others to build a fire. Once the flames were high, 
+                                the Rabbit said, "I have no food to give, but you may eat me," and leaped into the fire. Touched 
+                                by this self-sacrifice, the Emperor saved the Rabbit from the flames.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Reward in the Moon</span><br>
+                                As a reward, the Emperor carried the Rabbit to the Moon Palace. Its fur turned a shimmering, 
+                                translucent white, becoming the Jade Rabbit. Today, it stands under a cassia tree, using a mortar 
+                                and pestle to pound divine herbs for the gods.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-05.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--吴刚 111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Wu Gang Chopping the Cassia Tree</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Impatient Student</span><br>
+                                Wu Gang was a mortal who lived during the Han Dynasty. He was incredibly restless and lacked 
+                                the patience to master any skill. He desired to become an immortal but refused to put in the 
+                                hard work or years of study required by his masters
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Divine Banishment</span><br>
+                                The Emperor of Heaven grew tired of Wu Gang's laziness and arrogance. To teach him a lesson 
+                                in perseverance, the Emperor banished him to the Moon Palace and told him he could only return 
+                                to Earth as an immortal after he successfully chopped down a massive tree.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--吴刚 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Wu Gang Chopping the Cassia Tree</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Self-Healing Tree</span><br>
+                                The tree was a giant Cassia (laurel), hundreds of feet tall. Wu Gang took his axe and swung 
+                                with all his might, but as soon as he pulled the blade out, the wood miraculously healed itself. 
+                                No matter how deep the cut, the tree remained perfectly whole.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 75, 58);">The Eternal Labor</span><br>
+                                For thousands of years, Wu Gang has remained on the moon, swinging his axe day and night. 
+                                Because he never learned the virtue of patience, he is trapped in an endless cycle of labor. 
+                                It is said that the dark shadows we see on the moon are the silhouette of Wu Gang still chopping 
+                                at the tree.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-07.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(30, 37, 43)">
+            <div class="content-container JP-content" style="background-color: rgb(30, 37, 43);">
+                <div class="moonT" style="color: rgba(225, 230, 240, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Japan</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 215, 150);">The Aesthetic of Imperfection</span> <br>
+                                        In Japanese culture, the moon is a focal point of Mono no aware—a deep empathy 
+                                        toward the transience of things. While the full moon is celebrated during Tsukimi 
+                                        (moon-viewing), Japanese aesthetics often find deeper beauty in the "incomplete" moon, 
+                                        such as the waxing crescent or a moon partially veiled by clouds, reflecting a Zen-like 
+                                        appreciation for imperfection and fleeting moments.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(255, 215, 150);">The Spiritual Harmony</span><br>
+                                        Beyond its beauty, the moon is woven into Japan’s 
+                                        spiritual and agricultural rhythm, symbolized by the lunar rabbit pounding 
+                                        mochi and the deity Tsukuyomi-no-Mikoto. This legacy persists in modern Japan 
+                                        as a time for gratitude and reflection, where ancient harvest rituals and bamboo 
+                                        decorations blend seamlessly with contemporary life, honoring the quiet harmony 
+                                        between nature and the human spirit.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 215, 150);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Kaguya hime</span>
+                                            <span>Tsukuyomi no Mikoto</span>
+                                            <span>Tsuki no Usagi</span>
+                                        </div>             
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\JP\JP-01.png" alt="" class="moon-region-culture-pic">
+                    </div> 
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--辉夜111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Tale of the Bamboo Cutter</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Shining Bamboo</span><br>
+                                An old bamboo cutter named Sanuki no Miyatsuko found a mysterious, glowing stalk of bamboo. 
+                                Inside, he discovered a tiny, thumb-sized girl. He and his wife raised her as their own daughter, 
+                                naming her Kaguya-hime (Princess Kaguya). She grew into a woman of extraordinary beauty, radiating 
+                                a literal light from her body.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Impossible Tasks</span><br>
+                                Kaguya-hime’s beauty attracted five noble princes and even the Emperor of Japan. To avoid marriage, 
+                                she set five "impossible tasks" for the princes, asking for mythical items like a jeweled branch from 
+                                Hourai or a fire-rat robe. All the princes failed through deception or exhaustion, and even the Emperor’s 
+                                advances were politely refused.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-02.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--辉夜 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Tale of the Bamboo Cutter</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Celestial Reveal</span><br>
+                                As the years passed, Kaguya-hime became increasingly melancholy whenever she looked at the full moon. 
+                                She eventually confessed to her parents that she was not of this world, but a Princess of the Moon. She 
+                                had been sent to Earth temporarily as punishment (or for protection) and was now being called back to her lunar home.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Robe of Feathers</span><br>
+                                On the night of the full moon, celestial beings descended to take her home. Though the Emperor sent soldiers 
+                                to guard her, they were paralyzed by the moon’s radiance. Before leaving, Kaguya-hime donned a Robe of Feathers,
+                                 which erased all her earthly memories and attachments. She ascended to the heavens, leaving behind a heartbroken
+                                  family and a final gift for the Emperor.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-03.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--月度111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Tsukuyomi-no-Mikoto</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Divine Birth</span><br>
+                                Tsukuyomi was born when the creator god, Izanagi, washed his right eye during a purification ritual after returning from the underworld. 
+                                He was granted the Moon as his kingdom, while his sister Amaterasu was given the Sun. They lived together in the sky, governing the cycle of day and night.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Heavenly Feastr</span><br>
+                                Amaterasu once sent Tsukuyomi to represent her at a feast hosted by Ukemochi, the goddess of food. To prepare the meal, Ukemochi turned toward the land and spat out rice, 
+                                turned toward the sea and spat out fish, and turned toward the forest to spit out game. She presented this "bounty" to Tsukuyomi on a beautifully set table.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-04.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--月度 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Tsukuyomi-no-Mikoto</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Divine Wrath</span><br>
+                                Tsukuyomi was disgusted that the food had been produced from the goddess’s body. Viewing her actions as filthy and disrespectful, he flew into a rage and killed Ukemochi with his sword. 
+                                Despite his violent act, the goddess’s fallen body continued to provide for humanity, sprouting seeds of grain and livestock from her remains.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Eternal Separation</span><br>
+                                When Amaterasu learned of Tsukuyomi’s cruelty, she was so furious that she vowed never to see him again. She moved to a different part of the sky, creating a permanent rift between them. 
+                                This is why the Sun and the Moon are never seen together, as the two siblings forever chase one another across the horizon in eternal silence.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-05.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--月兔 111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Tsuki no Usagi</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Old Man from the Moon</span><br>
+                                An Old Man from the Moon decided to visit Earth to test the virtue of three friends: a Monkey, an Otter, 
+                                and a Rabbit. Disguised as a frail, starving beggar, he approached them and said, "I am very hungry. Could you find me something to eat?"
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Search for Food</span><br>
+                                The Monkey climbed the trees and brought back plenty of fruit. The Otter swam in the river and caught several fish. The Rabbit, however,
+                                 struggled to find anything but grass, which humans cannot eat. Despite searching for a long time, the Rabbit returned with nothing to offer the man.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-06.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+
+                    <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--月兔 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Tsuki no Usagi</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">The Sacrifice</span><br>
+                                Saddened that it had no food, the Rabbit asked the Monkey and Otter to build a fire. When the flames grew high, the Rabbit said to the beggar, 
+                                "I have nothing to give you, so please eat me instead." Without hesitation, the Rabbit threw itself into the fire to become a meal for the man.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 215, 150);">Eternal Honor</span><br>
+                                The beggar revealed himself to be the Old Man from the Moon. Deeply moved by the Rabbit’s incredible kindness,
+                                 he saved the Rabbit from the fire and carried it back to the Moon. Today, the Japanese believe the Rabbit lives there, using a mortar and pestle to pound mochi (rice cakes).
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\JP\JP-07.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(50, 30, 46);">
+            <div class="content-container IN-content" style="background-color: rgb(50, 30, 46);">
+                <div class="moonT" style="color: rgba(240, 225, 235, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">India</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 180, 0);">The Cosmic Cycle</span> <br>
+                                        In Indian culture, the moon (Chandra) is a vital deity governing 
+                                        the tides of time and human emotion. As the "Lord of Plants," it 
+                                        represents the divine nectar of life (Soma), where its rhythmic waxing 
+                                        and waning symbolize the eternal cycle of rebirth and the flow of vital 
+                                        energy through the universe.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(255, 180, 0);">The Spiritual Compass</span><br>
+                                        Beyond its celestial role, the moon is the soul of India’s sacred 
+                                        calendar. From the celebration of Karwa Chauth to the enlightenment 
+                                        of Guru Purnima, the lunar cycle dictates the timing of festivals 
+                                        and inner reflection, harmonizing spiritual devotion with the ancient 
+                                        movements of the cosmos.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 180, 0);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Chandra</span>
+                                            <span>Rohini</span>
+                                            <span>Ganesha</span>
+                                        </div>   
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\in\IN-01.jpg" alt="" class="moon-region-culture-pic">
+                    </div> 
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--打岔111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Chandra</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Divine Marriage</span><br>
+                                Chandra, the handsome and radiant Moon God, married the twenty-seven daughters of Daksha (the progenitor god). 
+                                These twenty-seven sisters represent the Nakshatras (lunar mansions) or the different positions of the moon in the sky. 
+                                Chandra promised to treat all twenty-seven wives with equal love and devotion.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Sin of Favoritism</span><br>
+                                Despite his vow, Chandra became deeply infatuated with only one wife, Rohini, because of her extraordinary beauty. He spent all his time with her, completely neglecting his other twenty-six wives. 
+                                The ignored sisters eventually turned to their father, Daksha, and pleaded for justice against their husband’s neglect.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-02.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--打岔 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Chandra</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Curse of Waning</span><br>
+                               Daksha warned Chandra several times to treat his daughters equally, but Chandra could not pull himself away from Rohini. Furious, Daksha cursed Chandra to suffer from a wasting disease. 
+                               As the curse took effect, Chandra began to lose his luster and shrink in size day by day, threatening to disappear entirely.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Phases of the Moon</span><br>
+                               Chandra prayed to Lord Shiva for help. Shiva could not entirely remove Daksha's curse, but he mitigated it. He decreed that Chandra would wane (shrink) for fifteen days, 
+                               but then wax (grow) for the next fifteen days. This cycle created the phases of the moon that we see today, serving as a permanent reminder of the need for balance and fairness.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-03.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--天选111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Rohini</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Chosen One</span><br>
+                                Chandra, the Moon God, was married to the twenty-seven daughters of the creator god Daksha. Each daughter represented a constellation in the sky. Among them, 
+                                Rohini was the most radiant and enchanting. While Chandra had promised to spend one night with each wife in rotation, he became so captivated by Rohini’s grace that he refused to leave her side.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Sisters' Grief</span><br>
+                                As Chandra stayed permanently in Rohini’s palace, the other twenty-six sisters felt abandoned and humiliated. They pleaded with their husband to remember his duty, but Chandra was blinded by his infatuation. 
+                                Eventually, the sisters returned to their father, Daksha, weeping over the neglect and the broken harmony of the celestial heavens.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-04.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--天选 222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Rohini</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Mark of the Hare</span><br>
+                                In some versions of the myth, to distract Chandra from his singular obsession and remind him of his duties to the world, a divine intervention occurred. A rabbit (or hare) was placed upon the moon. 
+                                This "Hare in the Moon" was meant to be a symbol of humility and a constant reminder that even the most beautiful deity must serve a greater purpose.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Eternal Favorite</span><br>
+                                Despite the curse that forced Chandra to wane and wax (which we see as the moon's phases), his love for Rohini never faded. Even today, in Vedic astrology, Rohini remains the moon's favorite station.
+                                 It is said that when the moon passes through the Rohini constellation, it shines with its most potent and auspicious light, celebrating their eternal bond.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-05.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--加尼撒 111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Ganesha</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Creation of Ganesha</span><br>
+                               While her husband, Lord Shiva, was away meditating, the goddess Parvati felt lonely and desired someone to guard her home. She took the turmeric paste from her own body, molded it into the shape of a boy, 
+                               and breathed life into him. She commanded the boy to stand guard at the entrance and allow no one to enter while she bathed.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Great Confrontation</span><br>
+                                When Lord Shiva returned home, he found a stranger blocking his path. Ganesha, following his mother’s orders, refused to let the Great God enter. Furious at being denied entry to his own home by a child,
+                                 Shiva engaged in a fierce battle. In a fit of divine rage, Shiva used his trident to strike off the boy's head.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-06.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--加你撒222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Ganesha</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Transformation</span><br>
+                                When Parvati emerged and saw her son’s lifeless body, she was overcome with inconsolable grief and rage, threatening to destroy the universe. 
+                                To appease her, Shiva sent his followers to find the head of the first living creature they encountered facing north. 
+                                They returned with the head of a powerful and wise Elephant. Shiva attached it to the boy’s body and brought him back to life.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 180, 0);">The Lord of Beginnings</span><br>
+                                Shiva declared Ganesha to be his own son and granted him a supreme blessing: Ganesha would be worshipped first before any other god in any ritual or new endeavor.
+                                 This is why Ganesha is known as the Remover of Obstacles and the patron of arts and sciences; his elephant head symbolizes the immense wisdom needed to navigate life's challenges.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\in\IN-07.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(26, 42, 58)">
+            <div class="content-container GR-content" style="background-color: rgb(26, 42, 58);">
+                <div class="moonT" style="color: rgba(220, 235, 245, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Greece</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(180, 230, 255);">The Divine Guardian</span> <br>
+                                        In Greek mythology, the moon is the celestial chariot of the goddesses, 
+                                        weaving through the night sky as a symbol of mystery and transition. 
+                                        It represents the rhythmic pulse of nature, where the moonlight acts 
+                                        as a silver bridge between the mortal realm and the divine, guiding the 
+                                        path of hunters and dreamers alike.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(180, 230, 255);">The Eternal Romance</span><br>
+                                        Beyond its glow, the moon embodies the themes of obsession and 
+                                        timeless love. From the silent vigil over the sleeping beautiful 
+                                        to the fierce protection of the wilderness, the lunar cycles reflect 
+                                        the complex passions of the gods, blending the untamed spirit of the 
+                                        earth with the serene coldness of the heavens.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(180, 230, 255);" >Story</span>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Selene</span>
+                                            <span>Artemis</span>
+                                            <span>Endymion</span>
+                                        </div>                   
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\GREECE\GR-01.jpg" alt="" class="moon-region-culture-pic">
+                    </div> 
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--塞了捏111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Selene</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Celestial Chariot</span><br>
+                                Selene was a Titan goddess, the daughter of Hyperion and Theia. Every night, as her brother Helios (the Sun) finished his journey across the sky,
+                                 Selene would bathe in the ocean, dress in shimmering robes, and drive her silver chariot across the heavens to bring light to the dark world.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Sleeping Shepherd</span><br>
+                               One night, Selene looked down and saw a mortal shepherd named Endymion sleeping on Mount Latmus. She was so struck by his extraordinary beauty that she fell deeply in love. 
+                               She descended from the sky every night just to watch him sleep and stay by his side in the silence of the moonlight.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-02.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--塞了捏222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Selene</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Gift of Eternal Sleep</span><br>
+                                Selene could not bear the thought of Endymion growing old or dying. She begged Zeus to grant him a special fate. Zeus agreed and placed Endymion into an eternal, ageless sleep. 
+                                This allowed Selene to visit him every night forever, finding him always young and beautiful, preserved in time by the power of the moon.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Moon’s Influence</span><br>
+                               Beyond her romance, Selene was seen as the "All-Seeing Eye of the Night." The ancient Greeks believed she controlled the dew that nourished the plants and influenced the cycles of life on Earth.
+                                To this day, the word "Selenology" (the study of the Moon) and the element "Selenium" are named in her honor.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-03.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--啊耳111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Artemis</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Divine Archer</span><br>
+                               Artemis was born on the island of Delos just moments before her brother, Apollo. As the Goddess of the Hunt, she spent her time in the wild forests, armed with a silver bow and arrows crafted by the Cyclopes. 、
+                               She was a fierce protector of nature and animals, often accompanied by a group of nymphs and a pack of hunting hounds.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Lunar Authority</span><br>
+                                In later Greek traditions, Artemis was identified with the Moon, just as Apollo was with the Sun. While her brother drove the golden chariot of day, Artemis was the mistress of the night. Her silver arrows were said to represent the piercing rays of the moon, 
+                                and she was often depicted with a crescent moon resting like a crown upon her head.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-04.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--啊耳222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Artemis</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Protector of the Young</span><br>
+                                Despite her reputation as a cold and independent huntress, Artemis had a deeply compassionate side. She was the protector of young children and women in childbirth. She demanded absolute purity from her followers, 
+                                but she also provided safety and refuge to those who lived in the wild, earning her the title of "Mistress of the Animals."
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Wrath of the Goddess</span><br>
+                               Artemis was known for her fierce temper and strict sense of justice. When the hunter Actaeon accidentally saw her bathing in a forest stream, she turned him into a stag to protect her modesty. 
+                               This legend serves as a reminder of the "untouchable" nature of the moon—distant, cold, and possessing a dangerous beauty that commands respect.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-05.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--恩地111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Endymion</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Beautiful Shepherd</span><br>
+                               Endymion was a young shepherd (or sometimes a king) of extraordinary beauty who lived on Mount Latmus. Every night, he slept in a quiet cave on the mountainside. 
+                               His grace was so profound that even the gods noticed him, but none were more captivated than Selene, the Goddess of the Moon.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Moon’s Descent</span><br>
+                                As Selene drove her silver chariot across the night sky, she would pause to look down at the sleeping Endymion. Night after night, her love grew stronger until she finally descended from the heavens to be by his side. 
+                                She would gently kiss his closed eyes and watch over him in the silver silence of the moonlight.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-06.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--恩地222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">The Gift of Eternal Sleep</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Transformation</span><br>
+                                Selene could not bear the thought of Endymion’s beauty fading with age or being lost to death. She pleaded with Zeus to grant him a unique fate. Zeus agreed, placing Endymion into an eternal, ageless sleep.
+                                 He would never grow old and never die, remaining forever in a state of peaceful dreaming.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(180, 230, 255);">The Nightly Vigil</span><br>
+                                To this day, it is said that Selene continues her nightly vigil. Because Endymion is trapped in sleep, their love is one of eternal distance—she can watch him and love him, but he can never truly wake to return her gaze. 
+                                This legend explains why the moon seems to linger so lovingly over the quiet Earth each night..
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\GREECE\GR-07.webp" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(58, 50, 38)">
+            <div class="content-container RO-content" style="background-color: rgb(58, 50, 38);">
+                <div class="moonT" style="color: rgba(235, 230, 220, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Roman</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(210, 180, 120);">The Divine Guardian</span> <br>
+                                        In Roman culture, the moon was personified by the goddess Luna, 
+                                        the celestial counterpart to the sun. She was revered as a silent 
+                                        guardian of the night, guiding travelers and measuring the passage 
+                                        of months. Her presence represented the calm, governing force that 
+                                        balanced the fiery intensity of the daytime state.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(210, 180, 120);">The Wild Frontier</span><br>
+                                        Beyond its civil role, the moon embodied the untamed spirit of the 
+                                        wilderness through Diana, the goddess of the hunt. The lunar silver 
+                                        light was seen as her bow, striking through the dark forests to protect 
+                                        nature’s boundaries, blending the Roman ideals of fierce independence 
+                                        with the mystical rhythm of the night.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(210, 180, 120);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Luna</span>
+                                            <span>Diana</span>
+                                            <span>Hecate</span>
+                                        </div>                                    
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\ROME\RO-01.jpg" alt="" class="moon-region-culture-pic">
+                    </div> 
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--露娜111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Luna</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Chariot of the Night</span><br>
+                                Luna was the sister of Sol (the Sun) and Aurora (the Dawn). While Sol drove a four-horse chariot (quadriga) across the day, Luna was often depicted driving a two-horse chariot (biga) through the night. 
+                                She wore a crescent moon upon her brow and carried a torch, illuminating the path for travelers and dreamers.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Temple on the Aventine</span><br>
+                                Unlike many Greek lunar myths that remained in the realm of stories, Luna was deeply integrated into Roman state religion. Her most famous temple was located on the Aventine Hill in Rome. 
+                                It was said that the temple was built during the time of the kings to honor the moon's influence over the Roman calendar and the changing seasons.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-02.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--露娜222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Luna</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Union of Sol and Luna</span><br>
+                                The Romans viewed Sol and Luna as a divine pair that maintained the cosmic balance. They were the "Eyes of Heaven." While Sol represented the active, public life of the Roman citizen, Luna governed the private, 
+                                reflective, and mysterious world of the night. Together, they ensured that the light of the gods never truly left the city of Rome.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Linguistic Legacy</span><br>
+                                Luna’s influence survived long after the fall of the Roman Empire through the Latin language. Her name gave us the word "Lunar," and because the moon was once believed to influence mental cycles, it gave us the word "Lunatic." 
+                                To this day, the Roman moon goddess lives on every time we look at a "lunar" eclipse or mark a "monday" (Moon-day).
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-03.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--安娜111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Diana</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Maiden of the Wild</span><br>
+                                Diana was the daughter of Jupiter and Latona, born on the island of Delos. She was a fiercely independent goddess who swore an oath of eternal chastity. 
+                                Clad in a short tunic and armed with a silver bow, she spent her days roaming the deep forests, protecting the wildlife and maintaining the balance of nature.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Mistress of the Moon</span><br>
+                                While the goddess Luna represented the moon as a celestial body, Diana represented the moon’s power and light. She was often depicted with a crescent moon on her forehead, symbolizing her role as the "Queen of the Night." 
+                                Romans believed she watched over the Earth when her brother Apollo (the Sun) was resting, providing a silver light for those in the dark.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-04.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--安娜222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Diana</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Triple Goddess</span><br>
+                                Diana was part of a powerful "Triple Goddess" archetype known as Diana Triformis. In this role, she ruled three realms: as Diana on Earth (the Huntress), as Luna in the Heavens (the Moon), 
+                                and as Hecate in the Underworld (the Queen of Magic). This gave her immense authority over the cycles of life, death, and rebirth.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">Protector of the Marginalized</span><br>
+                                In Rome, Diana was more than just a goddess of nature; she was a protector of the lower classes, particularly slaves and women. Her most famous temple on the Aventine Hill was a place of sanctuary. 
+                                It was believed that she granted strength to the weak and watched over women during childbirth, earning her a place as one of Rome's most beloved deities.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-05.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--贺卡111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Hecate</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Titaness of Magic</span><br>
+                                Hecate was a powerful Titaness who retained her authority even after the fall of the Titans. She was the mistress of witchcraft, sorcery, and the night.
+                                 Unlike the other lunar goddesses, she was often depicted with three faces or three bodies, allowing her to look in all directions at once to see the past, present, and future.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Queen of Crossroads</span><br>
+                                Hecate was known as the "Goddess of the Crossroads." Ancient Greeks believed she stood at the places where three paths met, guiding those who were lost or making difficult transitions. 
+                                People would leave "Hecate’s Suppers" (offerings of food) at these junctions during the dark of the moon to seek her protection and avoid her wrath.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-06.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--贺卡222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Hecate</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Torchbearer of the Underworld</span><br>
+                                When Persephone was abducted by Hades, Hecate was the only one who heard her cries. She used her twin torches to light the way for Demeter as she searched for her daughter.
+                                 Because of this, she became a permanent companion to Persephone in the Underworld, acting as a bridge between the land of the living and the realm of the dead.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(210, 180, 120);">The Night-Wanderer</span><br>
+                               Hecate was often heard before she was seen, accompanied by the ghostly barking of her black hounds. As the goddess of the "Dark Moon," she represents the hidden wisdom found in the shadows and the transformative power of the night. 
+                               To this day, she remains a central figure in modern folklore as the protector of those who walk the path of mystery.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\ROME\RO-07.jpg" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(21, 32, 32)">
+            <div class="content-container NE-content" style="background-color: rgb(21, 32, 32);">
+                <div class="moonT" style="color: rgba(220, 240, 235, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Nortern Europe</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(130, 255, 230);">The Eternal Chase</span> <br>
+                                        In Norse culture, the moon (Máni) is not a passive orb but a 
+                                        tireless charioteer fleeing across the night sky. Driven by 
+                                        the relentless pursuit of the giant wolf Hati, the moon represents 
+                                        the fragile balance between order and chaos, serving as a cold, 
+                                        luminous reminder of the inevitable passage of time toward the 
+                                        twilight of the gods.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(130, 255, 230);">The Weaver of Fate</span><br>
+                                        Beyond the cosmic race, the moon acts as a vital compass for 
+                                        the Norse soul, governing the rhythm of the tides and the measurement 
+                                        of months. It is the silent witness to the harsh polar winters, 
+                                        blending ancient maritime survival with a deep, stoic reverence 
+                                        for the mystical forces that guide the destiny of both gods and men.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(130, 255, 230);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Máni</span>
+                                            <span>Hati</span>
+                                            <span>Bil & Hjúki</span>
+                                        </div>                                      
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\china\CN-01.png" alt="" class="moon-region-culture-pic">
+                    </div>
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--玛尼11-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Máni</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Celestial Driver</span><br>
+                                Máni and his sister Sól were the children of a man named Mundilfari. They were so beautiful that their father named them after the Moon and Sun. The gods, viewing this as prideful,
+                                 took the siblings and placed them in the sky. Máni was tasked with driving the horse-drawn chariot of the Moon, guiding its path through the stars every night.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Children of the Moon</span><br>
+                               As he traveled, Máni looked down and saw two children, Hjúki and Bil, carrying a bucket of water from a well. Pitying them or perhaps wanting company, he took them up from the Earth to join him in his chariot. 
+                               To this day, they follow him across the sky, and some believe this is the origin of the "Jack and Jill" nursery rhyme.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--玛尼222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Máni</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Great Wolf Chase</span><br>
+                               The journey through the night is a dangerous one. Máni is constantly pursued by a giant wolf named Hati Hróðvitnisson. This wolf hungers for the Moon and chases the chariot relentlessly. 
+                               Whenever the wolf gets close enough to snap at the Moon, an eclipse occurs, and the people on Earth must make a great noise to scare the wolf away.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The End of the World</span><br>
+                              According to prophecy, Máni’s flight will finally end during Ragnarök, the twilight of the gods. It is said that Hati will finally catch the Moon and swallow it whole,
+                              plunging the world into darkness as the final battle between the gods and giants begins. This cycle represents the Norse belief in the inevitable struggle between light and darkness.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--哈提111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Hati</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Scion of Fenrir</span><br>
+                                Hati Hróðvitnisson is a giant wolf of the Ironwood, born from the lineage of the Great Wolf, Fenrir. His name translates to "He Who Hates" or "Enemy." 
+                                Since the dawn of the cosmos, he has been tasked with a single, relentless purpose: to pursue the moon across the night sky.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Celestial Hunt</span><br>
+                               Every night, the moon god Máni drives his horse-drawn chariot through the stars. Right behind him, with jaws open wide, runs Hati. This eternal chase is what keeps the moon moving; 
+                               if Hati were to stop, the lunar cycle would freeze. The wolf’s hunger is so great that he never tires, and his presence is felt in every shadow cast by the moon.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--哈提222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Hati</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Shadow of the Eclipse</span><br>
+                                When Hati draws close enough to the chariot to snap at the moon, a lunar eclipse occurs. The ancients believed that the darkening of the moon was Hati nearly catching his prey.
+                                 During these times, people on Earth would make a great clamor—shouting and banging pots—hoping to distract the wolf and give the moon a chance to escape.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Doom of the Gods</span><br>
+                               The chase is destined to end during Ragnarök, the final battle of Norse mythology. It is prophesied that Hati will eventually succeed in catching the moon and swallowing it whole. 
+                               When the moon disappears into the wolf's throat, the stars will vanish from the sky, and the world will be plunged into the darkness of the final winter.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Bil & Hjúki</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Children of the Well</span><br>
+                                Bil and Hjúki were siblings, the children of a man named Viðfinnr. Their lives were filled with hard labor, and one night, 
+                                their father sent them out to fetch water from the sacred well called Byrgir. They carried a large bucket suspended on a pole across their shoulders.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Moon’s Compassion</span><br>
+                               As they walked back with the heavy, sloshing bucket, the Moon God, Máni, looked down from his celestial chariot. He saw how hard the children worked and how tired they were. 
+                               In an act of divine intervention—either to save them from their harsh life or simply to have company—he swooped down and lifted them from the Earth.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Bil & Hjúki</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Figures in the Moon</span><br>
+                               The siblings were placed in Máni’s chariot, still holding their pole and their bucket. They became the eternal companions of the Moon. To the Norse people,
+                                the dark patches visible on the moon's surface were not craters, but the shadows of Bil and Hjúki still carrying their water pail across the stars.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(130, 255, 230);">The Legacy of Jack and Jill</span><br>
+                               Many mythologists believe this ancient Norse legend is the true origin of the famous nursery rhyme, "Jack and Jill." Like Bil and Hjúki, 
+                               Jack and Jill "went up the hill to fetch a pail of water." Over centuries, the names of the Norse children evolved into the familiar characters we know in English folklore today.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back"  style="background-color: rgb(27, 38, 30)">
+            <div class="content-container WE-content" style="background-color: rgb(27, 38, 30);">
+                <div class="moonT" style="color: rgba(225, 235, 225, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Western Europe</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(160, 255, 100);">The Mystic Gateway</span> <br>
+                                        In Western European (Celtic) traditions, the moon is the silver 
+                                        gate between the physical world and the mystical "Otherworld." 
+                                        It governs the hidden rhythms of the forest and the flow of 
+                                        ancient magic, serving as a celestial guide for Druids who 
+                                        synchronized their sacred rituals with the lunar phases to 
+                                        harness the earth’s secret energies.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(160, 255, 100);" >The Source of Vitality</span><br>
+                                        Beyond its mystery, the moon is seen as the divine foster-mother 
+                                        of nature, essential for the growth of medicinal herbs and the 
+                                        fertility of the land. It represents a feminine power of healing 
+                                        and intuition, blending the rugged landscape of the Atlantic coast 
+                                        with a poetic reverence for the quiet, transformative strength of the night.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(160, 255, 100);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Arianrhod</span>
+                                            <span>Cerridwen</span>
+                                            <span>Morgan le Fay</span>
+                                        </div>         
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\china\CN-01.png" alt="" class="moon-region-culture-pic">
+                    </div>
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--马斯111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Arianrhod</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Virginity Test</span><br>
+                               King Math needed a virgin to rest his feet upon to maintain his magical power. His nephew, Gwydion, suggested his sister, Arianrhod, for the role. To prove her purity, 
+                               she had to step over Math’s magical rod. However, as she did so, she miraculously gave birth to two sons, revealing she was not the virgin she claimed to be.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Three Curses</span><br>
+                               Humiliated, Arianrhod fled to her castle, Caer Arianrhod, but she harbored a deep resentment toward her second son, whom Gwydion took away to raise. 
+                               She placed three "tynged" (destinies/curses) upon the boy: he would have no name unless she gave it, no arms unless she provided them, and no wife of any race on Earth.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--马斯222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Arianrhod</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Naming and Arming</span><br>
+                               Through trickery and illusions, Gwydion forced Arianrhod to break her first two curses. He disguised the boy and himself as shoemakers, 
+                               leading her to name the boy Lleu Llaw Gyffes ("The Bright One of the Skillful Hand"). Later, Gwydion faked an army's attack, causing her to hand the boy weapons to defend the castle, thus arming him.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Silver Wheel</span><br>
+                               After the third curse was bypassed by creating a woman out of flowers (Blodeuwedd), Arianrhod retreated permanently to her sea-bound castle. In Welsh folklore, her home "Caer Arianrhod" is identified with the constellation Corona Borealis. 
+                               She is seen as a celestial goddess who spins the wheel of time and stars, guiding souls between life and the afterlife.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--德文111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Cerridwen</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Cauldron of Inspiration</span><br>
+                               Cerridwen had a son named Morfran who was incredibly ugly. To give him an advantage in life, she decided to brew a magical potion in her cauldron that would grant him the gift of absolute wisdom and poetic inspiration (Awen). 
+                               The potion had to boil for a year and a day to produce just three sacred drops.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Accidental Wisdom</span><br>
+                               Cerridwen hired a young boy named Gwion Bach to stir the pot while she gathered herbs. On the final day, three scorching drops splashed onto Gwion’s thumb. 
+                               He instinctively sucked his thumb to ease the pain, instantly absorbing all the wisdom intended for Morfran. Realizing Cerridwen’s wrath, he fled immediately.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--德文222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Cerridwen</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Shape-Shifting Chase</span><br>
+                               A fierce magical chase ensued. Gwion turned into a hare, so Cerridwen became a greyhound. He became a fish, and she became an otter. He became a bird, 
+                               and she became a hawk. Finally, Gwion turned into a single grain of wheat, but Cerridwen became a black hen and swallowed him whole.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Rebirth of Taliesin</span><br>
+                               Instead of dying, Gwion grew inside Cerridwen’s womb. Nine months later, she gave birth to a beautiful baby. She couldn't bring herself to kill him, so she cast him into the sea in a leather bag.
+                                He was rescued and grew up to be Taliesin, the greatest bard and prophet in British history, carrying the eternal wisdom of the cauldron.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Morgan le Fay</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Lady of Avalon</span><br>
+                              In the earliest legends, Morgan was the chief of nine magical sisters living on the mystical Isle of Avalon. She was a benevolent figure, a skilled healer, and a shape-shifter who could fly through the air.
+                               When King Arthur was mortally wounded at the Battle of Camlann, it was Morgan who received him on her shores to heal his wounds.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Rivalry of Magic</span><br>
+                               As Arthurian legends evolved, Morgan’s character became darker. She was cast as Arthur’s half-sister, born to Igraine and Gorlois. Resentful of Arthur’s lineage and her own loss of power, 
+                               she became a powerful sorceress and a rival to Merlin. She spent much of her life plotting to steal Excalibur and bring down the Knights of the Round Table.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Morgan le Fay</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Test of the Green Knight</span><br>
+                               One of Morgan’s most famous schemes occurs in the story of Sir Gawain and the Green Knight. It was Morgan who used her magic to transform the knight Bertilak into the Green Knight.
+                               Her goal was to test the pride of the Round Table and frighten Queen Guinevere to death, showing that no knight, however brave, could escape the power of magic.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(160, 255, 100);">The Last Voyage</span><br>
+                               Despite her years of villainy, Morgan’s story ends where it began: in an act of sisterly love. When the golden age of Camelot fell and Arthur lay dying, the bitterness between them vanished. 
+                               Morgan appeared once more on a black boat, draped in mourning veils, to carry her brother back to Avalon to sleep until Britain’s time of greatest need.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="region-content turn-back" style="background-color: rgb(26, 28, 44)">
+            <div class="content-container EG-content" style="background-color: rgb(26, 28, 44);">
+                <div class="moonT" style="color: rgba(240, 235, 220, 1);">  <!--文化介绍第一页-->
+                    <span class="moonTtitle">Egypt</span>
+                    <div class="moon-2">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 230, 100);">The Divine Architect of Time</span> <br>
+                                        In Ancient Egyptian culture, the moon was the celestial scribe that measured 
+                                        the pulse of the universe. As the "Eye of Horus," it represented the nightly 
+                                        victory over darkness, serving as a cosmic clock that governed the rhythm of 
+                                        the Nile and the sacred rituals that maintained the eternal balance of Ma'at.<br><br>
+
+                                        <span style="font-size: 0.9vw; color: rgb(255, 230, 100);">The Healer of the Night</span><br>
+                                        Beyond its role in timekeeping, the moon embodied the supreme power 
+                                        of healing and protection. It was seen as a silver shield that restored 
+                                        wholeness to the broken, blending the mysterious wisdom of the desert 
+                                        nights with a profound belief in regeneration, ensuring that even in 
+                                        darkness, life would be preserved and renewed.
+                    </div>
+                                        
+                    <div class="story">
+                                        <span style="font-size: 0.9vw; color: rgb(255, 230, 100);" >Story</span><br>
+                                        <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Thoth</span>
+                                            <span>Khonsu</span>
+                                            <span>Horus</span>
+                                        </div>          
+                    </div>
+
+                    <div class="moon-region-culture-pic-container-1 pic-container-animation-regionContent">
+                        <img src="pic\china\CN-01.png" alt="" class="moon-region-culture-pic">
+                    </div>
+
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--托特111-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Thoth</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Divine Scribe</span><br>
+                               Thoth was the creator of the alphabet and the master of all knowledge. He was the scribe of the gods, recording every word spoken in the divine court. 
+                               The Egyptians believed he invented hieroglyphs, which they called "the words of the gods," giving humanity the power to preserve history and wisdom across generations.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Gambler of Moonlight</span><br>
+                               A famous myth tells how Thoth increased the length of the year. When the sky goddess Nut was forbidden from giving birth on any day of the 360-day calendar, Thoth gambled with Khonsu, the moon god. 
+                               Winning 1/72nd of the moon's light, he created five extra days (the Epagomenal days), allowing Nut’s children to be born and bringing the year to 365 days.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--托特222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Thoth</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Arbiter of the Dead</span><br>
+                               In the Hall of Truth, where the souls of the dead were judged, Thoth played a critical role. As the heart of the deceased was weighed against the feather of Ma'at (Truth), 
+                               Thoth stood by with his palette and reed pen. He recorded the final verdict with absolute impartiality, ensuring that only the worthy passed into the afterlife.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Nightly Replacement</span><br>
+                              Thoth was also seen as the "Silver Sun." It was believed that when the sun god Ra traveled through the underworld at night, he appointed Thoth to light the sky in his absence. 
+                              This made the moon the deputy of the sun, and Thoth became the protector of those who traveled or studied under the quiet light of the stars.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Khonsu</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Great Traveler</span><br>
+                               Khonsu was the son of Amun and Mut, completing the powerful Theban Triad. While other gods ruled the earth or the sun, Khonsu was the "Pathfinder" of the night. He was often depicted as a young man wrapped like a mummy, 
+                               wearing a lunar disk and crescent moon crown, or sometimes as a falcon-headed god representing his swift movement through the stars.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Game of Ancient Days</span><br>
+                               Before the modern calendar existed, the year was only 360 days long. When the sky goddess Nut was cursed so she could not give birth on any day of the year, Khonsu played a game of Senet (an ancient board game) against Thoth, the god of wisdom. 
+                               Thoth won 1/72nd of Khonsu’s light, which was used to create five extra days, allowing Nut’s children to be born and bringing the year to 365 days.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Khonsu</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Divine Healer</span><br>
+                              Khonsu was not just a god of time; he was revered as a miraculous healer. He was believed to have the power to drive out evil spirits and cure diseases. His fame spread far beyond Egypt’s borders; 
+                              legends tell of a time when his statue was sent to the distant land of Bakhtan to successfully exorcise a demon from a possessed princess.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Nightly Watchman</span><br>
+                               As the moon grew and faded, Khonsu was said to influence the fertility of the land and the growth of cattle. He was the "Great Light" that watched over the world while the sun god Ra was in the underworld.
+                               His nightly presence provided a sense of safety and order, ensuring that even in the deepest darkness, the light of the gods was never truly extinguished.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Horus</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Child of Magic</span><br>
+                               After the god Osiris was murdered and dismembered by his brother Set, the goddess Isis used her powerful magic to briefly revive her husband. She conceived Horus in secret and hid him in the papyrus marshes of the Nile Delta to protect him from his murderous uncle. 
+                               There, she raised him to be the rightful avenger of his father’s legacy.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Great Conflict</span><br>
+                               As Horus reached adulthood, he challenged Set for the throne of Egypt. Their struggle lasted for eighty years, taking the form of both legal battles before the divine court and violent physical combat. 
+                               During one of their fiercest battles, Set tore out Horus's left eye, but the eye was later healed and restored by the god Thoth, becoming the sacred Eye of Horus.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+
+                <div class="moonT" style="color: rgba(245, 220, 220, 1);">    <!--比尔222-->
+                        <div class="story-conetnt">
+                            <span class="Story-name">Horus</span>
+                            <div class="Story-in-1">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Unification</span><br>
+                               The divine tribunal eventually ruled in favor of Horus, declaring him the true King of Egypt. Set was banished to the harsh deserts, representing the dry heat and chaos, 
+                               while Horus became the ruler of the fertile Nile Valley. This victory symbolized the unification of Upper and Lower Egypt and the restoration of Ma’at (divine order) to the world.
+                            </div>
+
+                            <div class="Story-in-2">
+                                <span style="font-size: 1vw; color: rgb(255, 230, 100);">The Living Pharaoh</span><br>
+                               The Egyptians believed that every living Pharaoh was the earthly manifestation of Horus. When a Pharaoh ruled, he was Horus; when he died, he became Osiris in the afterlife. 
+                               As the god of the sky, Horus's right eye was the sun and his left eye was the moon, watching over humanity with the protective gaze of a divine falcon.
+                            </div>
+                        </div>
+                        <div class="moon-region-culture-pic-container-2 pic-container-animation-regionContent">
+                            <img src="pic\china\CN-06.png" alt="" class="moon-region-culture-pic">
+                        </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <audio src="audio\silent.mp3" class="silent-audio" ></audio>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script type="module" src="js/scene.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

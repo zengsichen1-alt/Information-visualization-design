@@ -1,0 +1,303 @@
+//UI 100层
+//3d场景画布第一层
+
+
+const Mapping = document.querySelector('.Mapping');
+const the1 = document.querySelector('.the1');
+const Traces = document.querySelector('.Traces');
+const Meeting = document.querySelector('.Meeting');
+const the2 = document.querySelector('.the2');
+const Races = document.querySelector('.Races');
+
+const MappingAni = gsap.fromTo(Mapping,
+    { y: '7vw', },
+    { y: 0, ease: 'power1.inOut', duration: 0.7,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',   
+    }}
+     
+);
+const the1Ani = gsap.fromTo(the1,
+    { y: '7vw',},
+    { y: 0, ease: 'power1.inOut', duration: 0.7, delay:0.1,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',    
+    }}
+);
+
+const TracesAni = gsap.fromTo(Traces,
+    { y: '7vw',},
+    { y: 0, ease: 'power1.inOut', duration: 0.7, delay:0.2,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const rightMoveAni1 = gsap.fromTo(Mapping,
+    { x: 0,},
+    { x: '7vw', ease: 'expo.inOut', duration: 0.8, delay:1.2,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const rightMoveAni2 = gsap.fromTo(the1,
+    { x: 0,},
+    { x: '7vw', ease: 'expo.inOut', duration: 0.8, delay:1.1,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const rightMoveAni3 = gsap.fromTo(Traces,
+    { x: 0,},
+    { x: '7vw', ease: 'expo.inOut', duration: 0.8, delay:1,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+
+const MeetingAni = gsap.fromTo(Meeting,
+    { y: '-7vw',},
+    { y: 0, ease: 'power1.inOut', duration: 0.7, delay:0.2,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const the2Ani = gsap.fromTo(the2,
+    { y: '-7vw',},
+    { y: 0, ease: 'power1.inOut', duration: 0.7, delay:0.3,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const RacesAni = gsap.fromTo(Races,
+    { y: '-7vw',},
+    { y: 0, ease: 'power1.inOut', duration: 0.7, delay:0.4,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const introducep1 = document.querySelector('.introduce-p1');
+const introducep2 = document.querySelector('.introduce-p2');
+const introducep3 = document.querySelector('.introduce-p3');
+const introducep4 = document.querySelector('.introduce-p4');
+const introducep5 = document.querySelector('.introduce-p5');
+
+
+const introducepAni1 = gsap.fromTo(introducep1,
+    { y: '1vw',opacity: 0},
+    { y: 0, opacity: 1, ease: 'power1.inOut', duration: 0.7, delay:0,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const introducepAni2 = gsap.fromTo(introducep2,
+    { y: '1vw',opacity: 0},
+    { y: 0, opacity: 1, ease: 'power1.inOut', duration: 0.7, delay:0.12,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const introducepAni3 = gsap.fromTo(introducep3,
+    { y: '1vw',opacity: 0},
+    { y: 0, opacity: 1, ease: 'power1.inOut', duration: 0.7, delay:0.24,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const introducepAni4 = gsap.fromTo(introducep4,
+    { y: '1vw',opacity: 0},
+    { y: 0, opacity: 1, ease: 'power1.inOut', duration: 0.7, delay:0.36,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+const introducepAni5 = gsap.fromTo(introducep5,
+    { y: '1vw',opacity: 0},
+    { y: 0, opacity: 1, ease: 'power1.inOut', duration: 0.7, delay:0.48,
+        scrollTrigger: {
+            trigger: '.the1',
+            start: 'top bottom',
+    }}
+);
+
+
+body::-webkit-scrollbar {
+    display: none;                 
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; 
+    pointer-events: none;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1.5px 1.5px at 90px 40px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 160px 120px, #ffffff, transparent);
+    background-size: 250px 250px; 
+    animation: moveStars 150s linear infinite; 
+    opacity: 0.6;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; 
+    pointer-events: none;
+    background-image: 
+        radial-gradient(2px 2px at 120px 80px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 240px 190px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 300px 250px, rgba(255,255,255,0.9), transparent);
+    background-size: 400px 400px; 
+    animation: moveStarsFast 120s linear infinite; 
+    opacity: 0.8;
+}
+
+@keyframes moveStarsFast {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -1500px 1500px; /* 移动距离更远，因此速度感觉更快 */
+    }
+}
+
+@keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -1000px 1000px; /* 定义星星向左下角移动的终点 */
+    }
+}
+
+
+
+
+
+
+
+
+const container2 = document.querySelector('.world-map-container');
+const canvasMap = document.querySelector('.world-map');
+const sceneMap = new THREE.Scene();
+const cameraMap = new THREE.PerspectiveCamera(45,container2.clientWidth/container2.clientHeight,0.1,1000);
+const rendererMap = new THREE.WebGLRenderer( { antialias : true, canvas: canvasMap } );
+    let widthMap = container2.clientWidth;
+    let heightMap = container2.clientHeight;
+    cameraMap.aspect = widthMap / heightMap;//设置相机宽高比
+    cameraMap.fov = 90;//设置相机视野
+    cameraMap.updateProjectionMatrix();//更新相机投影矩阵
+    rendererMap.setSize( widthMap, heightMap );//设置渲染尺寸
+    rendererMap.setPixelRatio( Math.min(window.devicePixelRatio, 2) );//设置像素比
+
+    window.addEventListener('resize', function() {
+        let widthMap = container2.clientWidth;
+        let heightMap = container2.clientHeight;
+        cameraMap.aspect = widthMap / heightMap;
+        cameraMap.updateProjectionMatrix();
+        rendererMap.setSize( widthMap, heightMap );
+        rendererMap.setPixelRatio( Math.min(window.devicePixelRatio, 2) );//设置像素比
+    });
+    
+    cameraMap.position.set(0, 0, 60);
+    cameraMap.lookAt(0, 100, 0);
+    sceneMap.add(cameraMap);
+    const loder = new GLTFLoader();
+    loder.load('model/earthLow.glb', function(gltf){
+            gltf.scene.position.set(0,0,0);
+            gltf.scene.rotation.set(0,0,0);
+            sceneMap.add(gltf.scene);
+    });
+
+   
+
+    const controlsMap = new OrbitControls(cameraMap, rendererMap.domElement);
+    
+    
+    controlsMap.enableDamping = true;
+    controlsMap.dampingFactor = 0.05; // 阻尼系数
+    controlsMap.enablePan = false;    // 禁止右键平移
+    controlsMap.enableZoom = false;    // 是否允许滚轮缩放
+    controlsMap.minDistance = 30;     // 最小缩放距离
+    controlsMap.maxDistance = 150;    // 最大缩放距离
+    controlsMap.target.set(0, 0, 0);
+
+    //光照
+    const areaLight = new THREE.RectAreaLight(0xffffff, 0.0, 20, 20);
+    areaLight.position.set(0, 0, -1);
+    areaLight.lookAt(0, 0, 0);
+    cameraMap.add(areaLight);
+
+    const pointLight = new THREE.PointLight(0xffFFFF, 50, 0, 2);
+    pointLight.position.set(-20, -30, 0);
+    sceneMap.add(pointLight);
+
+    rendererMap.outputColorSpace = THREE.SRGBColorSpace;//颜色空间
+    rendererMap.toneMapping = THREE.ACESFilmicToneMapping;//色调映射
+    rendererMap.toneMappingExposure = 2.0;//曝光度
+    rendererMap.shadowMap.enabled = true;//开启阴影
+    rendererMap.shadowMap.type = THREE.PCFSoftShadowMap;//阴影类型
+    const sunLightMap = new THREE.DirectionalLight(0xFFFFFF, 3);
+    sunLightMap.position.set(0, 0, -1);
+    sunLightMap.target.position.set(0, 0, 0);
+    sunLightMap.castShadow = true;
+    sunLightMap.shadow.camera.near = 0.5;//近端
+    sunLightMap.shadow.mapSize.width = 1024;//阴影质量
+    sunLightMap.shadow.mapSize.height = 1024;//阴影质量
+    sunLightMap.shadow.bias = -0.0001;
+    cameraMap.add(sunLightMap);
+    const ambient = new THREE.AmbientLight(0xffffff,2);
+    sceneMap.add(ambient);
+    //光照
+
+    
+
+    function mapanimate(){
+            requestAnimationFrame( mapanimate );
+            controlsMap.update();
+            
+            rendererMap.render( sceneMap, cameraMap );
+    }
+    mapanimate();
+
+
+
+    <div style="position: absolute; top: 3vh; line-height: 1.8em;">
+                                            <span>Kaguya hime</span>
+                                            <span>Tsukuyomi no Mikoto</span>
+                                            <span>Tsuki no Usagi</span>
+                                            <span>Kukuri hime</span>
+                                        </div>
