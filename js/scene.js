@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+﻿gsap.registerPlugin(ScrollTrigger);
 
 import * as THREE from "../threejs/Three.js";
 import { GLTFLoader } from '../threejs/jsm/loaders/GLTFLoader.js';
@@ -229,10 +229,12 @@ let moon4C;
                 }
             }}
 
-            addMarker(Luna2P, ".divPage1", ".divPage2");
-            addMarker(Ranger7P, ".divPage3", ".divPage4");
-            addMarker(Luna9P, ".divPage5", ".divPage6");
-            addMarker(Surveyor1P, ".divPage7" , ".divPage8");
+            addMarker(Luna2P, ".divPage1", ".divPage3");
+            addMarker(Ranger7P, ".divPage3", ".divPage5");
+            addMarker(Luna9P, ".divPage5", ".divPage7");
+            addMarker(Surveyor1P, ".divPage7" , ".divPage9");
+            addMarker(ChangE3P, ".divPage9", ".divPage11");
+            addMarker(ChangE5P, ".divPage11", ".divPage12");
             /*
             addMarker(Apollo11P, "#s12","#s18");
             addMarker(Apollo12P, "#s13","#s18");
@@ -240,13 +242,12 @@ let moon4C;
             addMarker(Apollo15P, "#s15","#s18");
             addMarker(Apollo16P, "#s16","#s18");
             addMarker(Apollo17P, "#s17","#s18");
-            addMarker(ChangE3P, "#s19", "#s20");
-            addMarker(ChangE5P, "#s20", "#s22");
+            
             */
 
             // 添加各个任务的标记
 
-            function rotateModelOnScroll(modelRatation1, modelRatation2, triggerId1, triggerId2) {
+            function rotateModelOnScroll(modelRatation1, modelRatation2, triggerId1) {
                     gsap.fromTo(gltf.scene.rotation,
                     { 
                         x:modelRatation1.x,                          
@@ -259,22 +260,61 @@ let moon4C;
                         scrollTrigger:{
                             trigger: triggerId1,
                             start:"top top",
-                            end:"bottom center",
-                            scrub:1,
+                            end:"bottom top",
+                            scrub:true,
 
                             snap: {
                                 snapTo: 1, // 1 表示吸附到动画结束点 (0 是起点，0.5 是中间)
-                                duration: { min: 0.2, max: 1.5 }, // 吸附过程的动画时长（秒）
-                                delay: 0.01, // 滚动停止后多久开始吸附
-                                ease: "power1.inOut" // 吸附过程的缓动效果
+                                duration: 0, // 吸附过程的动画时长（秒）
+                                delay: 0.00, // 滚动停止后多久开始吸附
+                                ease: "none" // 吸附过程的缓动效果
                             }
                             
                         }
                     })
             }
 
-            rotateModelOnScroll(gltf.scene.rotation, Luna2R, ".divPage1", ".divPage3");
+            rotateModelOnScroll(gltf.scene.rotation, Luna2R, ".divPage1");
+            rotateModelOnScroll(Luna2R, Ranger7R, ".divPage3");
+            rotateModelOnScroll(Ranger7R, Luna9R, ".divPage5");
+            rotateModelOnScroll(Luna9R, Surveyor1R, ".divPage7");
+            rotateModelOnScroll(Surveyor1R, ChangE3R, ".divPage9");
+            rotateModelOnScroll(ChangE3R, ChangE5R, ".divPage11");
+
+            const apolloPathPoints = [];
+            const missions = [Apollo11P, Apollo12P, Apollo14P, Apollo15P, Apollo16P, Apollo17P];
+            const segmentSteps = 50;
+
+            for (let i = 0; i < missions.length - 1; i++) {
+                const start = missions[i];
+                const end = missions[i+1];
+                for (let j = 0; j <= segmentSteps; j++) {
+                    // 如果不是第一段线的起点，跳过起点以避免点重复
+                    if (i > 0 && j === 0) continue; 
+                    
+                    const alpha = j / segmentSteps;
+                    const v = new THREE.Vector3().lerpVectors(start, end, alpha);
+                    // 归一化并抬高一点点，使其贴合球面
+                    v.normalize().multiplyScalar(moonRadius * 1.002); 
+                    apolloPathPoints.push(v);
+                }
+            }
+
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints(apolloPathPoints);
+            const lineMaterial = new THREE.LineBasicMaterial({ 
+                color: 0xffd700, // 金色
+                linewidth: 2,
+                transparent: true, // 开启透明
+                opacity: 1       // 设置透明度 (0.0 - 1.0)
+            });   
+
+            const apolloLine = new THREE.Line(lineGeometry, lineMaterial);
+
+            lineGeometry.setDrawRange(0, 0);
+            gltf.scene.add(apolloLine);
+
             
+
             moonExploreScene.add(gltf.scene);
     });
 

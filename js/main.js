@@ -56,7 +56,7 @@ musicBtn.addEventListener('click', () => {
 //#endregion UI-CONTAINER-RIGHT-SOUND-BTN-END
 
  //#region UI-CONTAINER-RIGHT-EXPLORE-BTN-START
-// 目前没有交互功能，后续可以添加一些动画效果或者跳转链接
+
  //#endregion UI-CONTAINER-RIGHT-EXPLORE-BTN-END
 
 //#region UI-CONTAINER-RIGHT-MENU-BTN-START
@@ -71,31 +71,31 @@ const menuTexts2 = menuAnis2.querySelector('.content-display-text');
 const menuTextsClone2 = menuAnis2.querySelector('.content-display-text-clone');
 const menuAnis = document.querySelectorAll('.menu-ani1');
 
-    const menuBtnC1Ani = gsap.fromTo(menuContent1, //斜向菜单动画
+    const menuBtnC1Ani = gsap.fromTo(menuContent1, //æ–œå‘èœå•åŠ¨ç”»
         { rotation: -10, opacity: 0, y: '2.5vw' },
         {rotation: 0, opacity: 1, y: 0, ease: 'power1.inOut', duration: 0.5, paused: true }
     ); 
 
-    const menuBtnC2Ani = gsap.fromTo(menuContent2, //斜向菜单动画
+    const menuBtnC2Ani = gsap.fromTo(menuContent2, //æ–œå‘èœå•åŠ¨ç”»
         { rotation: 20, opacity: 0, y: '6vw' },
         {rotation: 0, opacity: 1, y: 0, ease: 'power1.inOut', duration: 0.5, paused: true }
     );
 
-    const menuBtnDotAni = gsap.to(menuBtnDots, //90度两点转向
+    const menuBtnDotAni = gsap.to(menuBtnDots, //90åº¦ä¸¤ç‚¹è½¬å‘
     { rotation: 90, ease: 'power1.inOut', duration: 0.2, paused: true, yoyo: false }
     );
 
-    const menuAArrow45Ani = gsap.fromTo(menuAArrow45, //45度箭头
+    const menuAArrow45Ani = gsap.fromTo(menuAArrow45, //45åº¦ç®­å¤´
         { x: 0 , y: 0 },
         { x: '1.5vw', y: '-1.5vw', opacity: 0, ease: 'power1.inOut', duration: 0.1, paused: true}
     );
 
-    const menuText2Ani = gsap.fromTo(menuTexts2, //维基百科
+    const menuText2Ani = gsap.fromTo(menuTexts2, //ç»´åŸºç™¾ç§‘
         { y: 0, opacity: 1 },
         { y: '-1.3vw', opacity: 1, ease: 'power1.inOut', duration: 0.2, paused: true }
     );
 
-    const menuTextClone2Ani = gsap.fromTo(menuTextsClone2, //维基百科克隆
+    const menuTextClone2Ani = gsap.fromTo(menuTextsClone2, //ç»´åŸºç™¾ç§‘å…‹éš†
         { y: 0, opacity: 1 },
         { y: '-1.3vw', opacity: 1, ease: 'power1.inOut', duration: 0.2, paused: true }
     );
@@ -227,7 +227,125 @@ const introducePAni = gsap.fromTo(p,
 });
 
 
+const videoContainer = document.querySelector('.worldmap-container');
+const worldmapVideo = document.querySelector('.worldmap-video');
+let isVideoInFocusState = false;
+
+function setVideoFocusPlaybackState(isFocused) {
+    if (!worldmapVideo || isVideoInFocusState === isFocused) {
+        return;
+    }
+    isVideoInFocusState = isFocused;
+
+    if (isFocused) {
+        // 恢复声音并播放，显示原生控件
+        worldmapVideo.muted = false;
+        worldmapVideo.controls = true;
+        worldmapVideo.removeAttribute('autoplay');
+        const playPromise = worldmapVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+        }
+    } else {
+        // 暂停视频，隐藏控件，恢复静音
+        worldmapVideo.pause();
+        worldmapVideo.controls = false;
+        worldmapVideo.muted = true;
+    }
+}
+
+let snapReached = false;
+let videoPlaying = false;
+
+gsap.fromTo(videoContainer,
+    {
+        left: '5%',
+        xPercent: 0,
+        yPercent: 0,
+        y: '0vh',
+
+    },
+    {
+        width: '70vw',
+        left: '50%',
+        xPercent: -50,
+        yPercent: -40,
+        ease: 'power2.out',
+        duration: 2,
+        y: '70vh',
+
+        scrollTrigger: {
+            trigger: '.worldmap-container',
+            start: 'center center',
+            //end: '+=70vh',
+            scrub: true,
+            snap: {
+                snapTo: 0.70,
+                duration: 1,
+                ease: 'none'
+            },
+            onUpdate: (self) => {
+                if (!snapReached && self.progress >= 0.69) {
+                    snapReached = true;
+                    videoPlaying = true;
+                    setVideoFocusPlaybackState(true);
+                    console.log('Snap 完成，视频已恢复声音并开始播放');
+                }
+                if (snapReached && self.progress < 0.69) {
+                    snapReached = false;
+                    if (videoPlaying) {
+                        videoPlaying = false;
+                        setVideoFocusPlaybackState(false);
+                    }
+                    console.log('Snap 退出，视频已暂停并静音');
+                }
+            },
+            onLeave: () => {
+                if (snapReached) {
+                    snapReached = false;
+                    if (videoPlaying) {
+                        videoPlaying = false;
+                        setVideoFocusPlaybackState(false);
+                    }
+                    console.log('向下离开 section2，视频已暂停并静音');
+                }
+            },
+            onLeaveBack: () => {
+                if (snapReached) {
+                    snapReached = false;
+                    if (videoPlaying) {
+                        videoPlaying = false;
+                        setVideoFocusPlaybackState(false);
+                    }
+                    console.log('向上离开 section2，视频已暂停并静音');
+                }
+            }
+        }
+    }
+);
+
 //#endregion section1-2
+
+//#region section2 按键/点击播放视频
+function toggleVideoControl() {
+    if (!snapReached) return;
+    videoPlaying = !videoPlaying;
+    setVideoFocusPlaybackState(videoPlaying);
+    console.log(videoPlaying ? '视频控制已开启' : '视频已恢复静音循环');
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        e.preventDefault();
+        toggleVideoControl();
+    }
+});
+
+videoContainer.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleVideoControl();
+});
+//#endregion section2 按键/点击播放视频
 
 //#region section3
 const spans = document.querySelectorAll('.nation-title-span');
@@ -344,16 +462,16 @@ CR.forEach((cr, index) => {
         const content = regionContents[index];
         if (content) 
         {
-            activeContent = content; // 记录当前活动卡片
+            activeContent = content; // è®°å½•å½“å‰æ´»åŠ¨å¡ç‰‡
             
-            // 获取对应版块里 Story 的标题颜色并赋给 logo-text
+            // èŽ·å–å¯¹åº”ç‰ˆå—é‡Œ Story çš„æ ‡é¢˜é¢œè‰²å¹¶èµ‹ç»™ logo-text
             const storyTitle = content.querySelector('.story > span:first-child');
             const logoText = document.querySelector('.logo-text');
             if (storyTitle && logoText) {
                 gsap.to(logoText, { color: window.getComputedStyle(storyTitle).color, duration: 0.5, ease: 'power1.inOut', delay: 0.8 });
             }
 
-            // 阻隔背景滚动
+            // é˜»éš”èƒŒæ™¯æ»šåŠ¨
             document.body.style.overflow = 'hidden';
             if (typeof lenis !== 'undefined') lenis.stop();
 
@@ -377,7 +495,7 @@ CR.forEach((cr, index) => {
                     {display: 'none', pointerEvents: 'none', opacity: 0},
                     {display: 'flex', pointerEvents: 'auto', opacity: 1, ease: 'power1.inOut', duration: 0.5, delay: 0.3});
 
-                // 绑定滚轮横向滚动
+                // ç»‘å®šæ»šè½®æ¨ªå‘æ»šåŠ¨
                 const container = content.querySelector('.content-container');
                 if (container) {
                     currentScrollX = 0;
@@ -405,13 +523,13 @@ CR.forEach((cr, index) => {
 
 backBtn.addEventListener('click', () => {
     if (activeContent) {
-        // 恢复 logo 颜色
+        // æ¢å¤ logo é¢œè‰²
         const logoText = document.querySelector('.logo-text');
         if (logoText) {
             gsap.to(logoText, { color: '#E6E9EE', duration: 0.5, ease: 'power1.inOut' });
         }
 
-        // 移除滚轮监听并重置位置
+        // ç§»é™¤æ»šè½®ç›‘å¬å¹¶é‡ç½®ä½ç½®
         if (wheelHandler) {
             activeContent.removeEventListener('wheel', wheelHandler);
             wheelHandler = null;
@@ -422,20 +540,161 @@ backBtn.addEventListener('click', () => {
         }
         currentScrollX = 0;
 
-        // 关闭当前显示的 content
+        // å…³é—­å½“å‰æ˜¾ç¤ºçš„ content
         gsap.to(activeContent, { display: 'none', duration: 0.8, opacity: 0, ease: 'power1.inOut' });
-        activeContent = null; // 重置
+        activeContent = null; // é‡ç½®
     }
 
-    // 恢复背景滚动
+    // æ¢å¤èƒŒæ™¯æ»šåŠ¨
     document.body.style.overflow = 'auto';
     if (typeof lenis !== 'undefined') {
         lenis.start();
     }
 
-    // 隐藏 backBtn 本身
+    // éšè— backBtn æœ¬èº«
     backBtnAppearAni.reverse(); 
 });
 
 //#endregion section3
+
+//#region section4
+const section4 = document.querySelector('.section4');
+const section4Kicker = document.querySelector('.section4-kicker');
+const section4Title = document.querySelector('.section4-title');
+const section4Desc = document.querySelector('.section4-desc');
+const section4Footer = document.querySelector('.section4-footer');
+
+if (section4 && section4Kicker && section4Title && section4Desc && section4Footer) {
+    const section4Trigger = {
+        trigger: section4,
+        start: 'top 75%',
+        toggleActions: 'play none none reset'
+    };
+
+    gsap.fromTo(
+        section4Kicker,
+        { y: '2.4vw', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0, scrollTrigger: section4Trigger }
+    );
+
+    gsap.fromTo(
+        section4Title,
+        { y: '2.8vw', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.25, scrollTrigger: section4Trigger }
+    );
+
+    gsap.fromTo(
+        section4Desc,
+        { y: '2.2vw', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.5, scrollTrigger: section4Trigger }
+    );
+
+    gsap.fromTo(
+        section4Footer,
+        { y: '1.6vw', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.75, scrollTrigger: section4Trigger }
+    );
+}
+
+const satellite = document.querySelectorAll('.satellite-pic');
+
+//#endregion section4
+
+//#region section5
+
+const satelliteTextBlocks = gsap.utils.toArray('.three-s');
+
+if (satelliteTextBlocks.length > 0) {
+    gsap.set(satelliteTextBlocks, {
+        position: 'fixed',
+        top: '35vh',
+        left: '5vw',
+        autoAlpha: 0,
+        pointerEvents: 'none'
+    });
+
+    satelliteTextBlocks.forEach((textBlock, index) => {
+        const page = textBlock.closest('.explore-page');
+        const pictureBlock = page.querySelector('.satellite-pic');
+        const nextTextBlock = satelliteTextBlocks[index + 1];
+        const nextPage = nextTextBlock ? nextTextBlock.closest('.explore-page') : document.querySelector('.divPage12');
+        const splitText = new SplitText(textBlock, { type: 'chars' });
+
+        gsap.set(pictureBlock, {
+            position: 'fixed',
+            top: '35vh',
+            right: '5vw',
+            autoAlpha: 0,
+            pointerEvents: 'none'
+        });
+
+        gsap.set(splitText.chars, {
+            display: 'inline-block',
+            y: '1.2em',
+            autoAlpha: 0
+        });
+
+        function showSatelliteText() {
+            gsap.killTweensOf(textBlock);
+            gsap.killTweensOf(splitText.chars);
+            gsap.killTweensOf(pictureBlock);
+            gsap.set(textBlock, { autoAlpha: 1 });
+            gsap.set(pictureBlock, { autoAlpha: 1 });
+            gsap.fromTo(splitText.chars,
+                { y: '1.2em', autoAlpha: 0 },
+                {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 0.55,
+                    ease: 'power3.out',
+                    stagger: 0.012,
+                    overwrite: true
+                }
+            );
+        }
+
+        function hideSatelliteText(direction = 1) {
+            gsap.killTweensOf(textBlock);
+            gsap.killTweensOf(splitText.chars);
+            gsap.killTweensOf(pictureBlock);
+            gsap.to(pictureBlock, {
+                autoAlpha: 0,
+                duration: 0.28,
+                ease: 'power2.in',
+                overwrite: true
+            });
+            gsap.to(splitText.chars, {
+                y: direction > 0 ? '-0.8em' : '1.2em',
+                autoAlpha: 0,
+                duration: 0.28,
+                ease: 'power2.in',
+                stagger: 0.006,
+                overwrite: true,
+                onComplete: () => {
+                    gsap.set(textBlock, { autoAlpha: 0 });
+                }
+            });
+        }
+
+        ScrollTrigger.create({
+            trigger: page,
+            start: 'top top',
+            onEnter: showSatelliteText,
+            onEnterBack: showSatelliteText,
+            onLeaveBack: () => hideSatelliteText(-1)
+        });
+
+        if (nextPage) {
+            ScrollTrigger.create({
+                trigger: nextPage,
+                start: 'top top',
+                onEnter: () => hideSatelliteText(1),
+                onLeaveBack: showSatelliteText
+            });
+        }
+    });
+}
+
+//#endregion section5
+
 
