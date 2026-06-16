@@ -68,7 +68,7 @@ export function useMoonScenes() {
     
     let moon4;
     const gltfLoader = new GLTFLoader();
-        gltfLoader.load(assetUrl('/model/lowmoon.glb'), function(gltf){
+        gltfLoader.load(assetUrl('/model/moon4.glb'), function(gltf){
                 gltf.scene.position.set(-3,0,10);
                 gltf.scene.rotation.set(0,0,0);
                 moon4 = gltf.scene;
@@ -94,39 +94,6 @@ export function useMoonScenes() {
     
     //#endregion moonmeteorite scene
     
-    //#region earthmap scene
-    /*
-    const earthmapScene = new THREE.Scene();
-    const earthmapContainer = document.querySelector('.worldmap-container');
-    const earthmapCamera = new THREE.PerspectiveCamera(45,earthmapContainer.clientWidth/earthmapContainer.clientHeight,0.1,1000);
-    
-        earthmapCamera.fov = 45;//设置相机视野
-        earthmapCamera.position.set(0, 0, 20);
-        earthmapCamera.lookAt(0, 0, 0);
-    const earthmapCameraController = new MouseFollowCameraController(earthmapCamera, { maxYaw: Math.PI / 48, maxPitch: Math.PI / 48, lerpSpeed: 0.3 });
-    
-    let earthMap;
-        gltfLoader.load(assetUrl('/model/earthMap.glb'), function(gltf){
-                gltf.scene.position.set(0,0,-36);
-                gltf.scene.rotation.set(Math.PI/2,0,0);
-                earthMap = gltf.scene;
-                earthmapScene.add(gltf.scene);
-        });
-    
-    const earthLight = new THREE.DirectionalLight(0xFFFFFF, 3);
-        earthLight.position.set(0, 0,20);
-        earthLight.target.position.set(0, 0, 0);
-        earthLight.castShadow = true;
-        earthLight.shadow.camera.near = 0.5;
-        earthLight.shadow.mapSize.width = 1024;
-        earthLight.shadow.mapSize.height = 1024;
-        earthLight.shadow.bias = -0.0001;
-    
-        earthmapScene.add(earthLight);
-        earthmapScene.add(earthLight.target);
-    */
-    //#endregion earthmap scene
-    
     //#region moon explore
     const moonExploreScene = new THREE.Scene();
     const moonExploreContainer = document.querySelector('.moonExplore-container');
@@ -138,7 +105,7 @@ export function useMoonScenes() {
     
     let moonRadius;
     let moon4C;
-        gltfLoader.load(assetUrl('/model/lowmoon.glb'), function(gltf){
+        gltfLoader.load(assetUrl('/model/moon4.glb'), function(gltf){
                 gltf.scene.position.set(0,0,0);
                 gltf.scene.rotation.set(0,0,0);
                 moon4C = gltf.scene;
