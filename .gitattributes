@@ -1,3 +1,4 @@
 *.glb filter=lfs diff=lfs merge=lfs -text
 *.hdr filter=lfs diff=lfs merge=lfs -text
+public/model/moon4.glb -filter -diff -merge -text
 public/pic/HDR_subdued_blue_nebulae.hdr -filter -diff -merge -text
