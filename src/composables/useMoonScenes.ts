@@ -10,6 +10,8 @@ import { MouseFollowCameraController } from './MouseFollowCameraController';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 export function useMoonScenes() {
   let frameId = 0;
   let rendererRef: THREE.WebGLRenderer | null = null;
@@ -44,7 +46,7 @@ export function useMoonScenes() {
     const backgroundCameraController = new MouseFollowCameraController(backgroundCamera);
         
     const textureLoader = new HDRLoader();
-        textureLoader.load('/pic/HDR_subdued_blue_nebulae.hdr',
+        textureLoader.load(assetUrl('/pic/HDR_subdued_blue_nebulae.hdr'),
             function(texture) {
                 texture.mapping = THREE.EquirectangularReflectionMapping;
                 backgroundScene.background = texture;
@@ -66,7 +68,7 @@ export function useMoonScenes() {
     
     let moon4;
     const gltfLoader = new GLTFLoader();
-        gltfLoader.load('/model/moon4.glb', function(gltf){
+        gltfLoader.load(assetUrl('/model/lowmoon.glb'), function(gltf){
                 gltf.scene.position.set(-3,0,10);
                 gltf.scene.rotation.set(0,0,0);
                 moon4 = gltf.scene;
@@ -104,7 +106,7 @@ export function useMoonScenes() {
     const earthmapCameraController = new MouseFollowCameraController(earthmapCamera, { maxYaw: Math.PI / 48, maxPitch: Math.PI / 48, lerpSpeed: 0.3 });
     
     let earthMap;
-        gltfLoader.load('/model/earthMap.glb', function(gltf){
+        gltfLoader.load(assetUrl('/model/earthMap.glb'), function(gltf){
                 gltf.scene.position.set(0,0,-36);
                 gltf.scene.rotation.set(Math.PI/2,0,0);
                 earthMap = gltf.scene;
@@ -136,7 +138,7 @@ export function useMoonScenes() {
     
     let moonRadius;
     let moon4C;
-        gltfLoader.load('/model/moon4.glb', function(gltf){
+        gltfLoader.load(assetUrl('/model/lowmoon.glb'), function(gltf){
                 gltf.scene.position.set(0,0,0);
                 gltf.scene.rotation.set(0,0,0);
                 moon4C = gltf.scene;
