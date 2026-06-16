@@ -42,7 +42,7 @@
                     Moon (or any planetary body) and the first to transmit photographic data from the lunar surface back to Earth.</p>
             </div>
             <div class="satellite-pic sp2">
-                <img src="/pic/satellite/Luna9.jpg" alt=""  class="satellite-pic-style">
+                <img src="/pic/satellite/Luna9.JPG" alt=""  class="satellite-pic-style">
             </div>
         </div>
 
